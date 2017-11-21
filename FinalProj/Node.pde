@@ -37,18 +37,27 @@ class Node
     return visited;
   }
   
-  //unused
+  /*
+  *  Returns true if the node has the player
+  *  false otherwise
+  */
   boolean getIsPlayerLocation()
   {
     return isPlayerLocation;
   }
   
-  //unused
+  /*
+  *  Returns true if the node is the end of the maze
+  *  false otherwise
+  */
   boolean getIsEndLocation()
   {
     return isEndLocation;
   }
   
+  /*
+  *  Returns a specific wall from the walls array
+  */
   boolean getWallAt(int wall)
   {
    return walls[wall]; 
@@ -71,7 +80,6 @@ class Node
       neighbors.add(grid[i][j+1]);
     if(validIndex(i-1,j,grid) && !grid[i-1][j].getVisited()) // Left
       neighbors.add(grid[i-1][j]);
-    
     
     if(neighbors.size() > 0)
     {
@@ -128,6 +136,9 @@ class Node
     this.isPlayerLocation = playerLoc; 
   }
   
+  /*
+  *  Sets the location of the end of the maze
+  */
   void setEndLocation(boolean endLoc)
   {
     this.isEndLocation = endLoc;
@@ -163,26 +174,23 @@ class Node
     if(walls[3])
       line(x, y + w, x, y); // left
     
-    if(visited) {
+    if(visited) { // Has node been visted?
       noStroke();
       noFill();
-      
       noStroke();
       for (int i = 0; i < 5; i++) {
         fill(random(255));
         rect(random(x, x + w), random(y, y + w), 4, 4);
       }
     }
-    if(isPlayerLocation)
+    if(isPlayerLocation) // Is this the player location?
     {
       noStroke();
       fill(c1, c2, c3);
       rect(x + 4, y + 4, w - 4, w - 4);
-      
       visited = true;
-      
     }
-    if(isEndLocation)
+    if(isEndLocation) // Is this the end location?
     {
       noStroke();
       fill(c1, c2, c3);
